@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mobile Bookstore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col p-4">
+
+    <header class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 mb-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-indigo-900">📱 PhoneBookHaven</h1>
+        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded">Open</span>
+    </header>
+
+    <main class="flex-grow">
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">Welcome to My Shop</h2>
+            <p class="text-xs text-slate-500 mt-1">Tap a book to buy it!</p>
+        </div>
+
+        <div id="bookshelf" class="grid grid-cols-1 gap-4">
+            </div>
+    </main>
+
+    <footer class="text-center text-[10px] text-slate-400 mt-8 py-2 border-t border-slate-200">
+        &copy; 2026 My First Phone Website
+    </footer>
+
+    <script>
+        // 1. This is your book inventory list
+        const myBooks = [
+            { title: "70 Rules of Success", author: "Growth Guild", price: "$14.99", color: "bg-emerald-800" },
+            { title: "The Midnight Chronicles", author: "H.G. Wells", price: "$18.50", color: "bg-indigo-950" },
+            { title: "Mastering Your Budget", author: "Finance Press", price: "$12.00", color: "bg-amber-700" }
+        ];
+
+        // 2. This function draws the items on your phone screen
+        function displayBooks() {
+            const shelf = document.getElementById('bookshelf');
+            
+            shelf.innerHTML = myBooks.map(book => `
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
+                    <div class="w-16 h-20 ${book.color} text-white rounded p-2 text-[10px] font-bold flex flex-col justify-between shadow-sm shrink-0">
+                        <span>Book</span>
+                        <span class="line-clamp-2">${book.title}</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-sm text-slate-900">${book.title}</h3>
+                        <p class="text-xs text-slate-400">by ${book.author}</p>
+                        <div class="mt-2 flex justify-between items-center">
+                            <span class="text-sm font-bold text-indigo-600">${book.price}</span>
+                            <button onclick="alert('Added ${book.title} to your phone cart!')" class="bg-indigo-600 text-white text-[11px] px-3 py-1.5 rounded-lg font-medium">
+                                Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Run the display function automatically when the page loads
+        window.addEventListener('DOMContentLoaded', displayBooks);
+    </script>
+
+</body>
+</html>
